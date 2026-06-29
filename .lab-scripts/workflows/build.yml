@@ -10,8 +10,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/checkout@v4.2.2
+      - uses: actions/setup-dotnet@v4.2.1
         with:
           dotnet-version: '10.x'
       - name: Restore
@@ -23,7 +23,7 @@ jobs:
           dotnet publish src/Packages.Main/Packages.Main.csproj --configuration Release --no-build -o ./drop
           # The .pdpkg.zip is created alongside the project, not in --output; collect it for deploy
           cp src/Packages.Main/bin/Release/Packages.Main.pdpkg.zip ./drop/
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4.4.0
         with:
           name: drop
           path: ./drop/Packages.Main.pdpkg.zip
